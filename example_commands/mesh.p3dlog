@@ -1,0 +1,14 @@
+_gotomesh
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeShaft_1
+_refine BoreholeVolume_1_VolumeShaft_1
+_refine BoreholeVolume_1_VolumeDamaged_1
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeTip_1
+_refine BoreholeVolume_1_VolumeTip_1
+_refine BoreholeVolume_1_VolumeTip_1
+_mesh "Coarseness" 0.05 "UseEnhancedRefinements" True "EMRGlobalScale" 1.2 "EMRMinElementSize" 0.005 "UseSweptMeshing" True

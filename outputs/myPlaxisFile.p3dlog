@@ -1,0 +1,394 @@
+##~ running Plaxis3DInput.exe 2024.2.0.1144
+_setproperties "Title" "" "Company" "University of Dundee" "Comments" "" "UnitForce" "kN" "UnitLength" "m" "UnitTime" "day" "WaterWeight" 10 "ReferenceTemperature" 293.15 "LiquidSpecificHeatCapacity" 4181.3 "LiquidThermalConductivity" 0.0006 "LiquidLatentHeat" 334000 "LiquidThermalExpansion" 0.00021 "LiquidTemperature" 293.15 "IceSpecificHeatCapacity" 2108 "IceThermalConductivity" 0.00222 "IceThermalExpansion" 5E-5 "VapourSpecificHeatCapacity" 1930 "VapourThermalConductivity" 2.5E-5 "VapourSpecificGasConstant" 461.5 "UseTemperatureDepWaterPropsTable" False "ModelType" "Full" "ElementType" "10-Noded"
+_initializerectangular SoilContour -5 0 5 6
+##~ actual materials
+_soilmat "Identification" "Intact" "SoilModel" "User-defined" "Colour" 14823677 "gammaUnsat" 14 "gammaSat" 16 "DllFile" "milanmodel64.dll" "ModelInDll" "Milan_model" "User1" 0.057 "User2" 300000 "User4" 50 "User5" 0.9 "User6" 0.4 "User7" 0.9 "User8" 1.25 "User9" 0.4 "User10" 0.9 "User11" 50 "User12" 20 "User15" 13.33 "User19" -3000 "User20" -300 "InterfaceStiffnessDetermination" "From Eoed" "EoedInter" 400000 "CInter" 1000 "PhiInter" 10
+_soilmat "Identification" "Damaged" "SoilModel" "User-defined" "Colour" 10676870  "gammaUnsat" 14 "gammaSat" 16 "DllFile" "milanmodel64.dll" "ModelInDll" "Milan_model" "User1" 0.057 "User2" 300000 "User4" 50 "User5" 0.9 "User6" 0.4 "User7" 0.9 "User8" 1.25 "User9" 0.4 "User10" 0.9 "User11" 50 "User12" 20 "User15" 13.33 "User19" -1500 "User20" -50 "InterfaceStiffnessDetermination" "From Eoed" "EoedInter" 400000 "CInter" 1000 "PhiInter" 10
+_soilmat "Identification" "PuttyShaft" "SoilModel" "User-defined" "Colour" 10283244  "gammaUnsat" 14 "gammaSat" 16 "DllFile" "milanmodel64.dll" "ModelInDll" "Milan_model" "User1" 0.057 "User2" 300000 "User4" 50 "User5" 0.9 "User6" 0.4 "User7" 0.9 "User8" 1.25 "User9" 0.4 "User10" 0.9 "User11" 50 "User12" 20 "User15" 13.33 "User19" -50 "User20" -0.001 "InterfaceStiffnessDetermination" "From Eoed" "EoedInter" 400000 "CInter" 1000 "PhiInter" 10
+_soilmat "Identification" "PuttyTip" "SoilModel" "User-defined" "Colour" 12097330 "gammaUnsat" 14 "gammaSat" 16 "DllFile" "milanmodel64.dll" "ModelInDll" "Milan_model" "User1" 0.057 "User2" 300000 "User4" 50 "User5" 0.9 "User6" 0.4 "User7" 0.9 "User8" 1.25 "User9" 0.4 "User10" 0.9 "User11" 50 "User12" 20 "User15" 13.33 "User19" -50 "User20" -0.001 "InterfaceStiffnessDetermination" "From Eoed" "EoedInter" 400000 "CInter" 1000 "PhiInter" 10
+_soilmat "Identification" "PuttyInternal" "SoilModel" "User-defined" "Colour" 16377283 "gammaUnsat" 14 "gammaSat" 16 "DllFile" "milanmodel64.dll" "ModelInDll" "Milan_model" "User1" 0.057 "User2" 300000 "User4" 50 "User5" 0.9 "User6" 0.4 "User7" 0.9 "User8" 1.25 "User9" 0.4 "User10" 0.9 "User11" 50 "User12" 20 "User15" 13.33 "User19" -50 "User20" -0.001 "InterfaceStiffnessDetermination" "From Eoed" "EoedInter" 400000 "CInter" 1000 "PhiInter" 10
+##~ domain geometry
+_borehole 0 0
+_soillayer 0
+_set Soillayer_1.Soil.Material Intact
+_set Soillayer_1.Zones[0].Bottom -5
+_polycurve 0 0 0 1 0 0 0 1 0
+_set Polycurve_1.Offset1 -0.254
+_reset Polycurve_1 "Arc" 0 180 0.254 "Arc" 0 180 0.254
+_delete (Polycurve_1.Segments[1])
+_set Polycurve_1.Segments[0].ArcProperties.RelativeStartAngle1 90
+_set Polycurve_1.Offset1 0.254
+_set Polycurve_1.z 1
+_extrude (Polycurve_1) 0 0 -4.1
+_rename Surface_1 "Pile_geometry"
+_rename Polycurve_1 "Curve_pile"
+_plate Pile_geometry
+_rename Pile_geometry.Plate "PilePlate"
+_platemat "MaterialType" "Elastic"
+_set Pile_geometry.Plate.Material PlateMat_1
+_set PlateMat_1.Identification "PilePlate" 
+_set PilePlate_1.E1 210000000
+_set PilePlate_1.StructNu12 0.3
+_set PilePlate_1.d  0.04
+_posinterface Pile_geometry
+_neginterface Pile_geometry
+_polycurve 0 0 0 1 0 0 0 1 0
+_set Polycurve_1.Offset1 -0.314
+_reset Polycurve_1 "Arc" 0 180 0.314 "Arc" 0 180 0.314
+_delete (Polycurve_1.Segments[1])
+_set Polycurve_1.Segments[0].ArcProperties.RelativeStartAngle1 90
+_set Polycurve_1.Offset1 0.314
+_rename Polycurve_1 "PuttyRing"
+_close PuttyRing
+_surface PuttyRing
+_rename Surface_1 "PuttyDisk"
+_extrude (PuttyDisk) 0 0 -3.2016
+_polycurve 0 0 0 1 0 0 0 1 0
+_set Polycurve_1.Offset1 -0.614
+_reset Polycurve_1 "Arc" 0 180 0.614 "Arc" 0 180 0.614
+_delete (Polycurve_1.Segments[1])
+_set Polycurve_1.Segments[0].ArcProperties.RelativeStartAngle1 90
+_set Polycurve_1.Offset1 0.614
+_rename Polycurve_1 "DamageRing"
+_close DamageRing
+_surface DamageRing
+_rename Surface_1 "DamageDisk"
+_extrude (DamageDisk) 0 0 -3.608
+_gotostructures
+_close Curve_pile
+_surface Curve_pile
+_rename Surface_1 "PileDisk"
+_extrude (PileDisk) 0 0 -4.1
+_set PuttyDisk.z -3.1
+_intersect (Volume_1 PuttyDisk)
+_intersect (Volume_2 Volume_3 Volume_4 Volume_5)
+_rename Volume_9 "VolumeTip"
+_rename Volume_7 "VolumeShaft"
+_rename Volume_6 "VolumeInner"
+_rename Volume_8 "VolumeDamaged"
+_delete Geometry Volume_1
+_set VolumeDamaged.Soil.Material Damaged
+_set VolumeInner.Soil.Material PuttyInternal
+_set VolumeShaft.Soil.Material PuttyShaft
+_set VolumeTip.Soil.Material PuttyTip
+_gotostructures
+_rename Surface_1 "TipDisk"
+_set PileDisk.z 0
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "AboveGround"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_set PileDisk.z -0.124
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_1"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_1
+_set  Shaft_1.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_1.SurfaceLoad.sign_ref -11.2979
+_set  Shaft_1.SurfaceLoad.sign_inc -2.9728
+_set PileDisk.z -0.248
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_2"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_2
+_set  Shaft_2.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_2.SurfaceLoad.sign_ref -11.7099
+_set  Shaft_2.SurfaceLoad.sign_inc -2.8487
+_set PileDisk.z -0.372
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_3"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_3
+_set  Shaft_3.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_3.SurfaceLoad.sign_ref -12.1562
+_set  Shaft_3.SurfaceLoad.sign_inc -2.7246
+_set PileDisk.z -0.496
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_4"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_4
+_set  Shaft_4.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_4.SurfaceLoad.sign_ref -12.6416
+_set  Shaft_4.SurfaceLoad.sign_inc -2.6006
+_set PileDisk.z -0.62
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_5"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_5
+_set  Shaft_5.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_5.SurfaceLoad.sign_ref -13.1716
+_set  Shaft_5.SurfaceLoad.sign_inc -2.4765
+_set PileDisk.z -0.744
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_6"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_6
+_set  Shaft_6.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_6.SurfaceLoad.sign_ref -13.7528
+_set  Shaft_6.SurfaceLoad.sign_inc -2.3524
+_set PileDisk.z -0.868
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_7"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_7
+_set  Shaft_7.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_7.SurfaceLoad.sign_ref -14.3765
+_set  Shaft_7.SurfaceLoad.sign_inc -2.2314
+_set PileDisk.z -0.992
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_8"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_8
+_set  Shaft_8.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_8.SurfaceLoad.sign_ref -15.0843
+_set  Shaft_8.SurfaceLoad.sign_inc -2.1073
+_set PileDisk.z -1.116
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_9"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_9
+_set  Shaft_9.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_9.SurfaceLoad.sign_ref -15.8732
+_set  Shaft_9.SurfaceLoad.sign_inc -1.9832
+_set PileDisk.z -1.24
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_10"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_10
+_set  Shaft_10.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_10.SurfaceLoad.sign_ref -16.7584
+_set  Shaft_10.SurfaceLoad.sign_inc -1.8592
+_set PileDisk.z -1.364
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_11"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_11
+_set  Shaft_11.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_11.SurfaceLoad.sign_ref -17.7596
+_set  Shaft_11.SurfaceLoad.sign_inc -1.7351
+_set PileDisk.z -1.488
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_12"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_12
+_set  Shaft_12.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_12.SurfaceLoad.sign_ref -18.9017
+_set  Shaft_12.SurfaceLoad.sign_inc -1.611
+_set PileDisk.z -1.612
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_13"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_13
+_set  Shaft_13.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_13.SurfaceLoad.sign_ref -20.2181
+_set  Shaft_13.SurfaceLoad.sign_inc -1.4869
+_set PileDisk.z -1.736
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_14"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_14
+_set  Shaft_14.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_14.SurfaceLoad.sign_ref -21.7536
+_set  Shaft_14.SurfaceLoad.sign_inc -1.3628
+_set PileDisk.z -1.86
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_15"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_15
+_set  Shaft_15.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_15.SurfaceLoad.sign_ref -23.5698
+_set  Shaft_15.SurfaceLoad.sign_inc -1.2387
+_set PileDisk.z -1.984
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_16"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_16
+_set  Shaft_16.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_16.SurfaceLoad.sign_ref -25.755
+_set  Shaft_16.SurfaceLoad.sign_inc -1.1147
+_set PileDisk.z -2.108
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_17"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_17
+_set  Shaft_17.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_17.SurfaceLoad.sign_ref -28.4391
+_set  Shaft_17.SurfaceLoad.sign_inc -0.99057
+_set PileDisk.z -2.232
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_18"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_18
+_set  Shaft_18.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_18.SurfaceLoad.sign_ref -31.8229
+_set  Shaft_18.SurfaceLoad.sign_inc -0.86649
+_set PileDisk.z -2.356
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_19"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_19
+_set  Shaft_19.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_19.SurfaceLoad.sign_ref -36.2345
+_set  Shaft_19.SurfaceLoad.sign_inc -0.7424
+_set PileDisk.z -2.48
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_20"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_20
+_set  Shaft_20.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_20.SurfaceLoad.sign_ref -42.2514
+_set  Shaft_20.SurfaceLoad.sign_inc -0.61832
+_set PileDisk.z -2.604
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_21"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_21
+_set  Shaft_21.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_21.SurfaceLoad.sign_ref -50.9984
+_set  Shaft_21.SurfaceLoad.sign_inc -0.49423
+_set PileDisk.z -2.728
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_22"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_22
+_set  Shaft_22.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_22.SurfaceLoad.sign_ref -65.0163
+_set  Shaft_22.SurfaceLoad.sign_inc -0.37015
+_set PileDisk.z -2.852
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_23"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_23
+_set  Shaft_23.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_23.SurfaceLoad.sign_ref -91.617
+_set  Shaft_23.SurfaceLoad.sign_inc -0.24607
+_set PileDisk.z -2.976
+_intersect (Pile_geometry PileDisk)
+_rename Surface_1 "Shaft_24"
+_rename Surface_2 "PileDisk"
+_rename Surface_3 "Pile_geometry"
+_surfload  Shaft_24
+_set  Shaft_24.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_24.SurfaceLoad.sign_ref -165.1853
+_set  Shaft_24.SurfaceLoad.sign_inc -0.12198
+_rename Pile_geometry "Shaft_25"
+_surfload  Shaft_25
+_set  Shaft_25.SurfaceLoad.Distribution "Perpendicular, vertical increment"
+_set  Shaft_25.SurfaceLoad.sign_ref -9342.427
+_set  Shaft_25.SurfaceLoad.sign_inc -0.001
+_gotostructures
+_pointdispl -0.254 0 1
+_set Point_1.PointDisplacement.Displacement_z "Free"
+_set Point_1.PointDisplacement.Displacement_x "Prescribed"
+_set Point_1.PointDisplacement.ux 0.05
+_delete Geometry PuttyRing
+_gotostages
+_deactivate Soil_1 InitialPhase
+_activate Soil_1 InitialPhase
+_deactivate Soil_7 InitialPhase
+_deactivate Soil_8 InitialPhase
+_deactivate Soil_9 InitialPhase
+_deactivate Soil_10 InitialPhase
+_activate Soil_10 InitialPhase
+_deactivate Soil_10 InitialPhase
+_deactivate Soil_1 InitialPhase
+_activate Soil_1_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_2 InitialPhase
+_activate Soil_1_Soil_8_1 InitialPhase
+_activate Soil_1_Soil_9_1 InitialPhase
+_activate Soil_1_Soil_10_1 InitialPhase
+_deactivate Soil_1_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_deactivate Soil_1_Soil_7_2 InitialPhase
+_deactivate Soil_1_Soil_8_1 InitialPhase
+_deactivate Soil_1_Soil_9_1 InitialPhase
+_deactivate Soil_1_Soil_10_1 InitialPhase
+_activate Soil_1 InitialPhase
+_deactivate Soil_1_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_set Soil_1_Soil_7_1.Material InitialPhase PuttyInternal
+_deactivate Soil_1_Soil_7_2 InitialPhase
+_activate Soil_1_Soil_7_2 InitialPhase
+_deactivate Soil_1_Soil_8_1 InitialPhase
+_set Soil_1_Soil_8_1.Material InitialPhase PuttyShaft
+_activate Soil_1_Soil_8_1 InitialPhase
+_deactivate Soil_1_Soil_9_1 InitialPhase
+_activate Soil_1_Soil_9_1 InitialPhase
+_set Soil_1_Soil_9_1.Material InitialPhase Damaged
+_deactivate Soil_1_Soil_10_1 InitialPhase
+_activate Soil_1_Soil_10_1 InitialPhase
+_set Soil_1_Soil_10_1.Material InitialPhase PuttyTip
+_activate Soil_1_1 InitialPhase
+_set Soil_1_Soil_7_2.Material InitialPhase PuttyInternal
+_phase InitialPhase
+_set Model.CurrentPhase Phase_1
+_activate Plates Phase_1
+_activate Interfaces Phase_1
+_phase Phase_1
+_set Model.CurrentPhase Phase_2
+_activate SurfaceLoads Phase_2
+_phase Phase_2
+_set Model.CurrentPhase Phase_3
+_deactivate SurfaceLoads Phase_3
+_activate PointDisplacements Phase_3
+_set Model.CurrentPhase Phase_1
+_set Phase_1.Deform.UseDefaultIterationParams False
+_set Phase_1.Deform.UseLineSearch True
+_set Phase_1.Deform.UseGradualError True
+_set Phase_1.Deform.ResetStateVariables True
+_set Phase_1.Deform.ResetTime True
+_set Phase_2.Deform.ResetDisplacementsToZero True
+_set Phase_2.Deform.ResetStateVariables True
+_set Phase_2.Deform.ResetTime True
+_set Phase_2.Deform.UseDefaultIterationParams False
+_set Phase_2.Deform.UseGradualError True
+_set Phase_2.Deform.UseLineSearch True
+_set Phase_3.Deform.UseDefaultIterationParams False
+_set Phase_3.Deform.UseGradualError True
+_set Phase_3.Deform.UseGradualError False
+_set Phase_3.Deform.UseLineSearch True
+_set Phase_3.Deform.UseGradualError True
+_set Phase_3.MaxStepsStored 100
+_set Phase_3.Deform.MaxLoadFractionPerStep 0.01
+_set Phase_2.Deform.MaxLoadFractionPerStep 0.01
+_gotomesh
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeShaft_1
+_refine BoreholeVolume_1_VolumeShaft_1
+_refine BoreholeVolume_1_VolumeDamaged_1
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeInner_1
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeInner_2
+_refine BoreholeVolume_1_VolumeTip_1
+_refine BoreholeVolume_1_VolumeTip_1
+_refine BoreholeVolume_1_VolumeTip_1
+_mesh "Coarseness" 0.05 "UseEnhancedRefinements" True "EMRGlobalScale" 1.2 "EMRMinElementSize" 0.005 "UseSweptMeshing" True

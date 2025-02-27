@@ -1,0 +1,74 @@
+_delete Geometry PuttyRing
+_gotostages
+_deactivate Soil_1 InitialPhase
+_activate Soil_1 InitialPhase
+_deactivate Soil_7 InitialPhase
+_deactivate Soil_8 InitialPhase
+_deactivate Soil_9 InitialPhase
+_deactivate Soil_10 InitialPhase
+_activate Soil_10 InitialPhase
+_deactivate Soil_10 InitialPhase
+_deactivate Soil_1 InitialPhase
+_activate Soil_1_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_2 InitialPhase
+_activate Soil_1_Soil_8_1 InitialPhase
+_activate Soil_1_Soil_9_1 InitialPhase
+_activate Soil_1_Soil_10_1 InitialPhase
+_deactivate Soil_1_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_deactivate Soil_1_Soil_7_2 InitialPhase
+_deactivate Soil_1_Soil_8_1 InitialPhase
+_deactivate Soil_1_Soil_9_1 InitialPhase
+_deactivate Soil_1_Soil_10_1 InitialPhase
+_activate Soil_1 InitialPhase
+_deactivate Soil_1_1 InitialPhase
+_deactivate Soil_1_Soil_7_1 InitialPhase
+_activate Soil_1_Soil_7_1 InitialPhase
+_set Soil_1_Soil_7_1.Material InitialPhase PuttyInternal
+_deactivate Soil_1_Soil_7_2 InitialPhase
+_activate Soil_1_Soil_7_2 InitialPhase
+_deactivate Soil_1_Soil_8_1 InitialPhase
+_set Soil_1_Soil_8_1.Material InitialPhase PuttyShaft
+_activate Soil_1_Soil_8_1 InitialPhase
+_deactivate Soil_1_Soil_9_1 InitialPhase
+_activate Soil_1_Soil_9_1 InitialPhase
+_set Soil_1_Soil_9_1.Material InitialPhase Damaged
+_deactivate Soil_1_Soil_10_1 InitialPhase
+_activate Soil_1_Soil_10_1 InitialPhase
+_set Soil_1_Soil_10_1.Material InitialPhase PuttyTip
+_activate Soil_1_1 InitialPhase
+_set Soil_1_Soil_7_2.Material InitialPhase PuttyInternal
+_phase InitialPhase
+_set Model.CurrentPhase Phase_1
+_activate Plates Phase_1
+_activate Interfaces Phase_1
+_phase Phase_1
+_set Model.CurrentPhase Phase_2
+_activate SurfaceLoads Phase_2
+_phase Phase_2
+_set Model.CurrentPhase Phase_3
+_deactivate SurfaceLoads Phase_3
+_activate PointDisplacements Phase_3
+_set Model.CurrentPhase Phase_1
+_set Phase_1.Deform.UseDefaultIterationParams False
+_set Phase_1.Deform.UseLineSearch True
+_set Phase_1.Deform.UseGradualError True
+_set Phase_1.Deform.ResetStateVariables True
+_set Phase_1.Deform.ResetTime True
+_set Phase_2.Deform.ResetDisplacementsToZero True
+_set Phase_2.Deform.ResetStateVariables True
+_set Phase_2.Deform.ResetTime True
+_set Phase_2.Deform.UseDefaultIterationParams False
+_set Phase_2.Deform.UseGradualError True
+_set Phase_2.Deform.UseLineSearch True
+_set Phase_3.Deform.UseDefaultIterationParams False
+_set Phase_3.Deform.UseGradualError True
+_set Phase_3.Deform.UseGradualError False
+_set Phase_3.Deform.UseLineSearch True
+_set Phase_3.Deform.UseGradualError True
+_set Phase_3.MaxStepsStored 100
+_set Phase_3.Deform.MaxLoadFractionPerStep 0.01
+_set Phase_2.Deform.MaxLoadFractionPerStep 0.01
